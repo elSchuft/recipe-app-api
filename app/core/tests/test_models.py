@@ -6,8 +6,8 @@ class ModelTests(TestCase):
 
     def test_create_useer_with_email_successful(self):
         """Test creating a new user with email is successfull"""
-        email = 'test@muadip.com'
-        password = "Testpass123"
+        email = 'test@londonappdev.com'
+        password = "password123"
         user = get_user_model().objects.create_user(
                 email=email,
                 password=password
@@ -31,7 +31,7 @@ class ModelTests(TestCase):
         """Test creating a new superuser"""
         user = get_user_model().objects.create_superuser(
             'test@londonappdev.com',
-            'test123'
+            'password123'
         )
 
         self.assertTrue(user.is_superuser)
