@@ -15,6 +15,7 @@ RUN apk del .tmp-build-deps
 RUN mkdir /app
 WORKDIR /app
 COPY ./app/ /app
+RUN python manage.py migrate
 
 RUN adduser -D user
 USER user
