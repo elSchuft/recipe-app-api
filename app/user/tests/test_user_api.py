@@ -44,7 +44,9 @@ class PublicUserApiTests(TestCase):
 
     def test_password_too_short(self):
         """Test that the password must be mre than 5 characters"""
-        payload = {'email': 'test@londonappdev.com', 'password': 'pw', 'name': 'Test',}
+        payload = {
+            'email': 'test@londonappdev.com',
+            'password': 'pw', 'name': 'Test'}
         res = self.client.post(CREATE_USER_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
