@@ -19,11 +19,11 @@ class PublicIngredientsApiTests(TestCase):
     def steUp(self):
         self.client = APIClient()
 
-        def test_login_required(self):
-            """that login is required to access the endpoint"""
-            res = self.client.get(INGREDIENTS_URL)
+    def test_login_required(self):
+        """that login is required to access the endpoint"""
+        res = self.client.get(INGREDIENTS_URL)
 
-            self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class PrivateIngredientsAPITest(TestCase):
