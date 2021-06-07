@@ -16,7 +16,7 @@ INGREDIENTS_URL = reverse('recipe:ingredient-list')
 class PublicIngredientsApiTests(TestCase):
     """Test the publicly aviable ingredient API"""
 
-    def steUp(self):
+    def setUp(self):
         self.client = APIClient()
 
     def test_login_required(self):
@@ -71,7 +71,7 @@ class PrivateIngredientsAPITest(TestCase):
 
         exists = Ingredient.objects.filter(
             user=self.user,
-            name=payload['name'],
+            name=payload['name']
         ).exists()
 
         self.assertTrue(exists)
