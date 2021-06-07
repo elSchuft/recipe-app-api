@@ -51,7 +51,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """Return appropriate serializer class"""
         if self.action == 'retrieve':
             return serializers.RecipeDetailSerializer
-        elif self.action == 'upload_image':
+        elif self.action == 'upload-image':
             return serializers.RecipeImageSerializer
         return self.serializer_class
 
@@ -59,7 +59,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """Create a new recipe"""
         serializer.save(user=self.request.user)
 
-    @action(methods=['POST'], detail=True, url_path='upload_image')
+    @action(methods=['POST'], detail=True, url_path='upload-image')
     def upload_image(self, request, pk=None):
         """Upload an image to an recipe"""
         recipe = self.get_object()
