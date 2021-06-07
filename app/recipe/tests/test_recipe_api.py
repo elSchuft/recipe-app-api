@@ -188,7 +188,7 @@ class PrivateRecipeApiTest(TestCase):
         payload = {
             'title': 'spagetti carbonara',
             'time_minutes': 25,
-            'price': 5.00,
+            'price': 5.00
         }
         url = detail_url(recipe.id)
         self.client.put(url, payload)
@@ -215,7 +215,7 @@ class RecipeImageUploadTests(TestCase):
     def tearDown(self):
         self.recipe.image.delete()
 
-    def test_upoad_image_to_recipe(self):
+    def test_upload_image_to_recipe(self):
         """Test of loading an image to recipe"""
         url = image_upload_url(self.recipe.id)
         with tempfile.NamedTemporaryFile(suffix='.jpg') as ntf:
