@@ -26,7 +26,7 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': 'test@londonappdev.com',
             'password': "testpass",
-            'name': 'Test name'
+            'name': 'Test name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -37,7 +37,7 @@ class PublicUserApiTests(TestCase):
 
     def test_user_exists(self):
         """Test creating user that already exists fails """
-        payload = {'email': 'test@londonappdev.com', 'password': 'testpass'}
+        payload = {'email': 'test@londonappdev.com', 'password': 'testpass',}
         create_user(**payload)
 
         res = self.client.post(CREATE_USER_URL, payload)
@@ -48,7 +48,7 @@ class PublicUserApiTests(TestCase):
         """Test that the password must be mre than 5 characters"""
         payload = {
             'email': 'test@londonappdev.com',
-            'password': 'pw', 'name': 'Test'}
+            'password': 'pw', 'name': 'Test',}
         res = self.client.post(CREATE_USER_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
@@ -103,7 +103,7 @@ class PrivateUserApiTests(TestCase):
         self.user = create_user(
             email='test@londonappdev.com',
             password='testpass',
-            name='name'
+            name='fname',
         )
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
@@ -115,7 +115,7 @@ class PrivateUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, {
             'name': self.user.name,
-            'email': self.user.email
+            'email': self.user.email,
         })
 
     def test_post_me_not_allowed(self):

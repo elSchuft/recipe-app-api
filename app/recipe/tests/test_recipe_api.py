@@ -54,7 +54,7 @@ class PublicRecipeApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
 
-    def test_auth_required(self):
+    def test_required_auth(self):
         """ Test that authrntication is required"""
         res = self.client.get(RECIPES_URL)
 
@@ -87,7 +87,7 @@ class PrivateRecipeApiTest(TestCase):
     def test_recipes_limited_to_user(self):
         """Test retrieving recipes for user"""
         user2 = get_user_model().objects.create_user(
-            'other@londonappdev.com'
+            'other@londonappdev.com',
             'password123'
         )
         sample_recipe(user=user2)
@@ -188,7 +188,7 @@ class PrivateRecipeApiTest(TestCase):
         payload = {
             'title': 'spagetti carbonara',
             'time_minutes': 25,
-            'price': 5.00
+            'price': 5.00,
         }
         url = detail_url(recipe.id)
         self.client.put(url, payload)
@@ -201,7 +201,7 @@ class PrivateRecipeApiTest(TestCase):
         self.assertEqual(len(tags), 0)
 
 
-class RecipeImageUploadsTests(TestCase):
+class RecipeImageUploadTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
@@ -220,7 +220,7 @@ class RecipeImageUploadsTests(TestCase):
         url = image_upload_url(self.recipe.id)
         with tempfile.NamedTemporaryFile(suffix='.jpg') as ntf:
             img = Image.new('RGB', (10, 10))
-            img.save(ntf, fomat='JPEG')
+            img.save(ntf, format='JPEG')
             ntf.seek(0)
             res = self.client.post(url, {'image': ntf}, format='multipart')
 
